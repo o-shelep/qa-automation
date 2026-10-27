@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { calcRentalCost } from '../src/rental';
+import {
+  calcRentalCost,
+  calcRentalPayment,
+  calcDepositRefund,
+} from '../src/rental';
 
 describe('calcRentalCost — некоректні дані', () => {
   it.each([0, -1, 2.5, Number.NaN, Number.POSITIVE_INFINITY])(
@@ -38,4 +42,21 @@ describe('calcRentalCost — знижка від 30 діб', () => {
   ])('межа 30 діб: $days → $expected грн', ({ days, expected }) => {
     expect(calcRentalCost(days)).toBe(expected);
   });
+});
+
+describe('calcRentalPayment', () => {
+  it.each([
+    { days: 1, rent: 800, totalDue: 2800 },
+    { days: 7, rent: 5040, totalDue: 7040 },
+    { days: 30, rent: 18000, totalDue: 20000 },
+  ])(
+    '$days діб: оренда $rent + застава 2000 = $totalDue',
+    ({ days, rent, totalDue }) => {
+      expect(calcRentalPayment(days)).toEqual({
+        rent,
+        deposit: 2000,
+        totalDue,
+      });
+    },
+  );
 });
