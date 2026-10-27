@@ -9,3 +9,13 @@ describe('calcRentalCost — некоректні дані', () => {
     },
   );
 });
+
+describe('calcRentalCost — базова ціна', () => {
+  it.each([
+    { days: 1, expected: 800 },
+    { days: 2, expected: 1600 },
+    { days: 6, expected: 4800 },
+  ])('$days діб → $expected грн', ({ days, expected }) => {
+    expect(calcRentalCost(days)).toBe(expected);
+  });
+});
