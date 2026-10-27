@@ -60,3 +60,19 @@ describe('calcRentalPayment', () => {
     },
   );
 });
+
+describe('calcDepositRefund', () => {
+  it.each([
+    { damage: 0, refund: 2000, extraCharge: 0 },
+    { damage: 500, refund: 1500, extraCharge: 0 },
+    { damage: 1999, refund: 1, extraCharge: 0 },
+    { damage: 2000, refund: 0, extraCharge: 0 },
+    { damage: 2001, refund: 0, extraCharge: 1 },
+    { damage: 3500, refund: 0, extraCharge: 1500 },
+  ])(
+    'збитки $damage → повернення $refund, доплата $extraCharge',
+    ({ damage, refund, extraCharge }) => {
+      expect(calcDepositRefund(damage)).toEqual({ refund, extraCharge });
+    },
+  );
+});
