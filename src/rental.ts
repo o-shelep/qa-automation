@@ -22,3 +22,10 @@ export function calcRentalPayment(days: number) {
   const rent = calcRentalCost(days);
   return { rent, deposit: 2000, totalDue: rent + 2000 };
 }
+
+export function calcDepositRefund(damage: number) {
+  return {
+    refund: Math.max(2000 - damage, 0),
+    extraCharge: Math.max(damage - 2000, 0),
+  };
+}
