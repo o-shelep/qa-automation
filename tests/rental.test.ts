@@ -19,3 +19,13 @@ describe('calcRentalCost — базова ціна', () => {
     expect(calcRentalCost(days)).toBe(expected);
   });
 });
+
+describe('calcRentalCost — знижка від 7 діб', () => {
+  it.each([
+    { days: 6, expected: 4800 },
+    { days: 7, expected: 5040 },
+    { days: 8, expected: 5760 },
+  ])('межа 7 діб: $days → $expected грн', ({ days, expected }) => {
+    expect(calcRentalCost(days)).toBe(expected);
+  });
+});
