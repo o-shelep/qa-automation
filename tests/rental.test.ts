@@ -29,3 +29,13 @@ describe('calcRentalCost — знижка від 7 діб', () => {
     expect(calcRentalCost(days)).toBe(expected);
   });
 });
+
+describe('calcRentalCost — знижка від 30 діб', () => {
+  it.each([
+    { days: 29, expected: 20880 },
+    { days: 30, expected: 18000 },
+    { days: 31, expected: 18600 },
+  ])('межа 30 діб: $days → $expected грн', ({ days, expected }) => {
+    expect(calcRentalCost(days)).toBe(expected);
+  });
+});
