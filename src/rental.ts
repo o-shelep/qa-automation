@@ -17,3 +17,8 @@ export function calcRentalCost(days: number): number {
   }
   return days * DAILY_RATE * (1 - getDiscountRate(days));
 }
+
+export function calcRentalPayment(days: number) {
+  const rent = calcRentalCost(days);
+  return { rent, deposit: 2000, totalDue: rent + 2000 };
+}
