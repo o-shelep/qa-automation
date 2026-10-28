@@ -16,7 +16,6 @@ export interface OrderInput { id: string; amountUsd: number; email: string }
 export interface OrderRecord extends OrderInput {
   amountUah: number;
   createdAt: string;
-  status?: 'draft' | 'confirmed';
 }
 
 export class OrderService {
@@ -35,8 +34,7 @@ export class OrderService {
       amountUah,
       createdAt: new Date().toISOString(),
     };
-    await this.repo.save({ ...record, status: 'draft' });
-    await this.repo.save({ ...record, status: 'confirmed' });
+    await this.repo.save(record);
     await this.notifier.send(
       order.email,
       `Замовлення ${order.id} на суму ${amountUah} грн прийнято`,
