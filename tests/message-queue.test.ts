@@ -147,6 +147,16 @@ describe('MessageQueue — повторні спроби (3 спроби, зат
     await expect(promise).resolves.toMatchObject({ status: 'sent', attempts: 2 });
   });
 
+  it('відхилення не-Error значенням: код помилки — рядкове подання', async () => {
+    client.send = vi.fn().mockRejectedValue('socket hang up');
+    queue.enqueue(msg('m9'));
+
+    const promise = queue.processNext();
+    await vi.advanceTimersByTimeAsync(4000);
+
+    await expect(promise).resolves.toMatchObject({ status: 'failed', error: 'socket hang up' });
+  });
+  
   it('відмова журналу: помилка передається, повідомлення лишається в черзі', async () => {
     const brokenLog: DeliveryLog = {
       save: vi.fn().mockRejectedValue(new Error('STORAGE_UNAVAILABLE')),
