@@ -61,6 +61,10 @@ describe('OrderService — заглушки й шпигуни', () => {
     expect(notifier.send).not.toHaveBeenCalled();
   });
 
+  it('експеримент кроку 9: save викликано рівно один раз (перевірка взаємодії)', async () => {
+    await service.placeOrder({ id: 'A-7', amountUsd: 50, email: 'u@e.com' });
+    expect(repo.save).toHaveBeenCalledTimes(1);
+  });
   describe('фіксація часу', () => {
     beforeEach(() => {
       vi.useFakeTimers();
