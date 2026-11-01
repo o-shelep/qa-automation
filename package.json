@@ -1,27 +1,33 @@
 {
-  "name": "avtomatyatsiyatestuvanya",
+  "name": "qa-api-lab",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
+    "start": "tsx src/server.ts",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "coverage": "vitest run --coverage",
-    "lint": "eslint",
-    "format": "prettier --write ."
+    "typecheck": "tsc --noEmit",
+    "newman": "newman run postman/orders.postman_collection.json --reporters cli,junit --reporter-junit-export results/newman.xml",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/node": "^26.6.5",
-    "@vitest/coverage-v8": "^5.0.3",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "@types/supertest": "^7.2.1",
+    "@vitest/coverage-v8": "^5.0.5",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "msw": "^2.15.0",
-    "prettier": "^3.9.10",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.71.1",
-    "vitest": "^5.0.3"
-  }
+    "newman": "^6.2.3",
+    "supertest": "^7.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "type": "module"
 }

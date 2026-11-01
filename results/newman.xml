@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Orders API" tests="9" time="0.034">
+  <testsuite name="Показовий приклад / Login" id="d0c138b6-1497-477b-815d-d923576954ac" timestamp="2026-11-01T19:30:30.005Z" tests="1" failures="0" errors="0" time="0.022">
+    <testcase name="статус 200" time="0.022" classname="Login"/>
+  </testsuite>
+  <testsuite name="Показовий приклад / Create order" id="7eda5664-8b07-4b10-95f5-fde3136476f4" timestamp="2026-11-01T19:30:30.005Z" tests="2" failures="0" errors="0" time="0.001">
+    <testcase name="статус 201" time="0.001" classname="CreateOrder"/>
+    <testcase name="сума з доставкою" time="0.001" classname="CreateOrder"/>
+  </testsuite>
+  <testsuite name="Показовий приклад / Get order" id="c28cdb9e-da5a-468d-91e5-f3ad52ac4b0f" timestamp="2026-11-01T19:30:30.005Z" tests="2" failures="0" errors="0" time="0.002">
+    <testcase name="статус 200" time="0.002" classname="GetOrder"/>
+    <testcase name="те саме замовлення" time="0.002" classname="GetOrder"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / List orders (before)" id="0db8b147-eaa0-4e13-b2da-0b81b66d1289" timestamp="2026-11-01T19:30:30.005Z" tests="1" failures="0" errors="0" time="0.001">
+    <testcase name="статус 200" time="0.001" classname="9IdempotencyKeyListOrdersBefore"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / Create order with Idempotency-Key" id="e8f017b2-c677-4db1-9d13-028e13677278" timestamp="2026-11-01T19:30:30.005Z" tests="4" failures="0" errors="0" time="0.004">
+    <testcase name="статус 201" time="0.004" classname="9IdempotencyKeyCreateOrderWithIdempotencyKey"/>
+    <testcase name="перший запит не є повтором" time="0.004" classname="9IdempotencyKeyCreateOrderWithIdempotencyKey"/>
+    <testcase name="Location вказує на створене замовлення" time="0.004" classname="9IdempotencyKeyCreateOrderWithIdempotencyKey"/>
+    <testcase name="ownerId не потрапляє у відповідь" time="0.004" classname="9IdempotencyKeyCreateOrderWithIdempotencyKey"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / Repeat with same Idempotency-Key" id="97da7433-c760-43c5-8cc3-c7c6ed57a6b9" timestamp="2026-11-01T19:30:30.005Z" tests="3" failures="0" errors="0" time="0.001">
+    <testcase name="статус 201, як у першої відповіді" time="0.001" classname="9IdempotencyKeyRepeatWithSameIdempotencyKey"/>
+    <testcase name="позначено як повтор" time="0.001" classname="9IdempotencyKeyRepeatWithSameIdempotencyKey"/>
+    <testcase name="повернуто те саме замовлення" time="0.001" classname="9IdempotencyKeyRepeatWithSameIdempotencyKey"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / Same key, different body" id="1f6dd9ba-c616-4efc-ae17-9177ddb961b0" timestamp="2026-11-01T19:30:30.005Z" tests="2" failures="0" errors="0" time="0.001">
+    <testcase name="статус 422" time="0.001" classname="9IdempotencyKeySameKeyDifferentBody"/>
+    <testcase name="код IDEMPOTENCY_KEY_REUSED" time="0.001" classname="9IdempotencyKeySameKeyDifferentBody"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / Invalid Idempotency-Key" id="6c849f59-2adb-4fa3-9098-b8c43680494b" timestamp="2026-11-01T19:30:30.005Z" tests="2" failures="0" errors="0" time="0.001">
+    <testcase name="статус 400" time="0.001" classname="9IdempotencyKeyInvalidIdempotencyKey"/>
+    <testcase name="код INVALID_IDEMPOTENCY_KEY" time="0.001" classname="9IdempotencyKeyInvalidIdempotencyKey"/>
+  </testsuite>
+  <testsuite name="Варіант 9 — Idempotency-Key / List orders (side effect)" id="494de3c6-cfb1-460e-b9ce-35aa273403bb" timestamp="2026-11-01T19:30:30.005Z" tests="3" failures="0" errors="0" time="0.001">
+    <testcase name="статус 200" time="0.001" classname="9IdempotencyKeyListOrdersSideEffect"/>
+    <testcase name="замовлення з ключем створено рівно один раз" time="0.001" classname="9IdempotencyKeyListOrdersSideEffect"/>
+    <testcase name="додано рівно одне замовлення, хоча POST з ключем надіслано тричі" time="0.001" classname="9IdempotencyKeyListOrdersSideEffect"/>
+  </testsuite>
+</testsuites>
