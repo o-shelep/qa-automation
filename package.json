@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "tsx src/server.ts",
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "newman": "newman run postman/orders.postman_collection.json --reporters cli,junit --reporter-junit-export results/newman.xml",
-    "coverage": "vitest run --coverage"
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:experiment": "EXPERIMENT=1 playwright test tests/experiment --repeat-each=10 --project=chromium",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen https://www.saucedemo.com"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "express": "^5.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.6",
     "@types/supertest": "^7.2.1",
